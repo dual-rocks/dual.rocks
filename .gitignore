@@ -128,5 +128,11 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+# assets
+assets/
+
 # IDEs
 .vscode/
+
+# nodejs
+node_modules/
