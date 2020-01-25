@@ -1,0 +1,19 @@
+name: CI
+on:
+  - push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-python@v1
+        with:
+          python-version: '3.8.1'
+      - name: Install dependencies
+        run: |
+          pip install pipenv
+          pipenv install --dev
+      - name: Lint
+        run: pipenv run flake8
+      - name: Test
+        run: pipenv run ./manage.py test
