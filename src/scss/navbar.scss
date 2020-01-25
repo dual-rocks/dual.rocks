@@ -19,6 +19,12 @@ header {
 
   h1 {
     color: rgba(255, 255, 255, .75) !important;
-    padding: 10rem 1rem;
+    padding: 5rem 1rem;
+  }
+
+  &.bigger {
+    h1 {
+      padding: 10rem 1rem;
+    }
   }
 }
