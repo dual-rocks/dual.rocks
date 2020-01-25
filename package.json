@@ -6,7 +6,8 @@
   "scripts": {
     "remove-assets-files": "rm assets/*.css assets/*.js",
     "build": "npm run remove-assets-files && webpack --mode production",
-    "build-dev": "npm run remove-assets-files && webpack --mode development"
+    "build-dev": "npm run remove-assets-files && webpack --mode development",
+    "build-watch": "webpack --mode development --watch"
   },
   "repository": {
     "type": "git",

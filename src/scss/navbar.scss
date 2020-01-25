@@ -1,0 +1,24 @@
+header {
+  background-image: linear-gradient(
+    to bottom,
+    rgba(155, 89, 182, 1.0),
+    rgba(231, 76, 60, 1.0)
+  );
+
+  .navbar {
+    background-color: rgba(255, 255, 255, .5);
+
+    .navbar-menu {
+      background-color: rgba(255, 255, 255, .25);
+
+      .navbar-item:hover {
+        background-color: rgba(255, 255, 255, .125);
+      }
+    }
+  }
+
+  h1 {
+    color: rgba(255, 255, 255, .75) !important;
+    padding: 10rem 1rem;
+  }
+}

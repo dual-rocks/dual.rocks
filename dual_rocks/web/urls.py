@@ -3,6 +3,8 @@ from .views import (
     HomeView,
 )
 
+app_name = 'web'
+
 urlpatterns = [
-    path('', HomeView.as_view()),
+    path('', HomeView.as_view(), name='home'),
 ]
