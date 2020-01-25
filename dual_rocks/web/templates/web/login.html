@@ -1,0 +1,32 @@
+{% extends "web/layouts/base.html" %}
+{% load i18n bulma_tags %}
+
+{% block body %}
+<header>
+    {% include "web/elements/navbar.html" %}
+    <h1 class="title has-text-centered">dual.rocks - {% trans "entrar" %}</h1>
+</header>
+<section class="hero is-light">
+
+    <div class="columns is-centered">
+        <div class="column is-half">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">{% trans "entrar" %}</h1>
+                </div>
+                <hr />
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form|bulma }}
+                    <div class="field">
+                        <div class="control">
+                            <button class="button is-primary" type="submit">{% trans "entrar" %}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% include "web/elements/footer.html" %}
+{% endblock %}
