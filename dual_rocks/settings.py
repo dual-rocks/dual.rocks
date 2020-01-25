@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'dual_rocks.authentication',
+    'dual_rocks.web',
 ]
 
 MIDDLEWARE = [
@@ -118,5 +119,9 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "assets")
+]
 
 STATIC_URL = '/static/'
