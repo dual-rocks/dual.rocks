@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'dual_rocks.authentication',
     'dual_rocks.web',
+    'bulma',
 ]
 
 MIDDLEWARE = [
@@ -103,6 +104,12 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTH_USER_MODEL = 'authentication.User'
+
+LOGIN_URL = 'web:login'
+
+LOGIN_REDIRECT_URL = 'web:home'
+
+LOGOUT_REDIRECT_URL = 'web:home'
 
 
 # Internationalization
