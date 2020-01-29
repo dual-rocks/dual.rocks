@@ -58,6 +58,7 @@ class User(AbstractBaseUser, PermissionsMixin):
             ),
             ForbiddenValuesValidator(
                 [
+                    'admin',
                     'login',
                     'logout',
                     'register',
