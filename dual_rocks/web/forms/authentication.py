@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth.hashers import make_password
 from dual_rocks.authentication.models import User
 
@@ -16,4 +17,6 @@ class RegisterForm(forms.ModelForm):
         }
 
     def clean_password(self):
-        return make_password(self.cleaned_data.get('password'))
+        password = self.cleaned_data.get('password')
+        validate_password(password)
+        return make_password(password)
