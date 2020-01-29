@@ -136,3 +136,6 @@ assets/
 
 # nodejs
 node_modules/
+
+# media files
+media/
