@@ -6,6 +6,7 @@ from django.contrib.auth.base_user import (
 )
 from django.contrib.auth.models import PermissionsMixin
 from django.core import validators
+from django.urls import reverse
 
 
 class UserManager(BaseUserManager):
@@ -49,3 +50,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     @property
     def is_staff(self): return self.is_superuser
+
+    def get_absolute_url(self):
+        return reverse('web:profile', kwargs={'at': self.at})
