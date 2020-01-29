@@ -4,7 +4,7 @@ from .views import (
     LoginView,
     LogoutView,
     RegisterView,
-    ProfileView,
+    profile_view_resolver,
 )
 
 app_name = 'web'
@@ -14,5 +14,5 @@ urlpatterns = [
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('register/', RegisterView.as_view(), name='register'),
-    path('<slug:at>/', ProfileView.as_view(), name='profile')
+    path('<slug:at>/', profile_view_resolver, name='profile')
 ]

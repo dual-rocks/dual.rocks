@@ -1,6 +1,9 @@
 from django.views.generic import TemplateView
 
 
+def profile_view_resolver(request, **kwargs):
+    return ProfileView.as_view()(request, **kwargs)
+
+
 class ProfileView(TemplateView):
-    def get_template_names(self):
-        return 'web/profile.html'
+    template_name = 'web/profile.html'
