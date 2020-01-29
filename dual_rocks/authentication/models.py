@@ -8,8 +8,10 @@ from django.contrib.auth.base_user import (
 from django.contrib.auth.models import PermissionsMixin
 from django.core import validators
 from django.urls import reverse
+from django.utils.deconstruct import deconstructible
 
 
+@deconstructible
 class ForbiddenValuesValidator:
     message = _('"%(value)s" é um valor proibido.')
     forbidden_values = None
