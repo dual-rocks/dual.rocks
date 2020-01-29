@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'dual_rocks.authentication',
     'dual_rocks.web',
+    'dual_rocks.user_profile',
     'bulma',
 ]
 
