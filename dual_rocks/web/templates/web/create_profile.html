@@ -1,0 +1,39 @@
+{% extends "web/layouts/base.html" %}
+{% load i18n bulma_tags %}
+
+{% block body %}
+<header>
+    {% include "web/elements/navbar.html" %}
+    <h1 class="title has-text-centered">{% trans "você ainda não tem um perfil" %}</h1>
+</header>
+<section class="hero is-light">
+    <div class="columns is-centered">
+        <div class="column is-half">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">{% trans "crie um perfil" %}</h1>
+                </div>
+                <p>{% trans "Criar um perfil não é obrigatório mas é recomendado. Dessa forma as outras pessoas saberam quem é você." %}</p>
+                <hr />
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form|bulma }}
+                    <div class="field">
+                        <div class="control">
+                            <div class="level">
+                                <div class="level-left">
+                                    <button type="submit" class="button is-primary">{% trans "criar perfil" %}</button>
+                                </div>
+                                <div class="level-rigth">
+                                    <a href="{% url "web:home" %}">{% trans "Quero continuar sem perfil" %}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% include "web/elements/footer.html" %}
+{% endblock %}

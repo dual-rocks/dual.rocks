@@ -1,6 +1,7 @@
 from datetime import datetime
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
+from django.urls import reverse
 from dual_rocks.authentication.models import User
 
 
@@ -57,3 +58,9 @@ class Profile(models.Model):
         blank=True,
         null=True
     )
+
+    def __str__(self):
+        return '{} profile'.format(self.user)
+
+    def get_absolute_url(self):
+        return reverse('web:profile', kwargs={'at': self.user.at})
