@@ -1,8 +1,21 @@
 {% extends "web/layouts/base.html" %}
 
 {% block body %}
-<header>
-    {% include "web/elements/navbar.html" %}
-</header>
+<div class="profile">
+    <header>
+        {% include "web/elements/navbar.html" %}
+        <img src="{{ profile.picture_url }}" />
+    </header>
+</div>
+<div class="container">
+    <div class="columns">
+        <div class="column is-one-third">
+            <div class="notification is-primary">
+                <h1 class="title">{{ profile.name }}</h1>
+                <h2 class="subtitle">@{{ profile.user.at }}</h2>
+            </div>
+        </div>
+    </div>
+</div>
 {% include "web/elements/footer.html" %}
 {% endblock %}

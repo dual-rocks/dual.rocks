@@ -1,0 +1,22 @@
+.profile {
+  header {
+    position: relative;
+    margin-bottom: calc(100px + 1rem);
+
+    &::after {
+      content: "";
+      display: block;
+      height: 100px;
+      margin-top: 1rem;
+    }
+
+    img {
+      position: absolute;
+      display: block;
+      bottom: 0;
+      left: 50%;
+      transform: translate(-50%, 50%);
+      border-radius: 50%;
+    }
+  }
+}
