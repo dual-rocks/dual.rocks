@@ -141,12 +141,12 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = config(
     'DUAL_ROCKS_MEDIA_ROOT',
-    default=os.path.join(BASE_DIR, '/media/')
+    default=os.path.join(BASE_DIR, './media/')
 )
 
 SERVER_MEDIA_FILES = config(
     'DUAL_ROCKS_SERVER_MEDIA_FILES',
-    default=False,
+    default=True,
     cast=bool
 )
 
