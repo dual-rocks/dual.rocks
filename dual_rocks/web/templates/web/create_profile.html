@@ -15,7 +15,7 @@
                 </div>
                 <p>{% trans "Criar um perfil não é obrigatório mas é recomendado. Dessa forma as outras pessoas saberam quem é você." %}</p>
                 <hr />
-                <form method="post" data-profile-form>
+                <form method="post" enctype="multipart/form-data" data-profile-form>
                     {% csrf_token %}
                     {{ form|bulma }}
                     <div class="field">
