@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'dual_rocks.web',
     'dual_rocks.user_profile',
     'bulma',
+    'easy_thumbnails',
 ]
 
 MIDDLEWARE = [
@@ -133,3 +134,30 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_URL = '/static/'
+
+# Media files
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = config(
+    'DUAL_ROCKS_MEDIA_ROOT',
+    default=os.path.join(BASE_DIR, '/media/')
+)
+
+SERVER_MEDIA_FILES = config(
+    'DUAL_ROCKS_SERVER_MEDIA_FILES',
+    default=False,
+    cast=bool
+)
+
+
+# Thumbnails
+
+THUMBNAIL_ALIASES = {
+    '': {
+        'profile_picture': {
+            'size': (200, 200),
+            'crop': True
+        },
+    },
+}
