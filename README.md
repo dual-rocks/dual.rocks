@@ -19,3 +19,4 @@
 |--|--|
 | `npm run build` | Build production assets files. |
 | `npm run build-dev` | Build development assets files. |
+| `npm run build-watch` | Watch files to build development assets files. |
