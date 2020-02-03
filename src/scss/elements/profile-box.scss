@@ -1,0 +1,22 @@
+.profile.box {
+  min-height: 16rem;
+
+  & > img,
+  & > .icon {
+    display: block;
+    height: 9rem;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+  }
+
+  & > .icon {
+    position: relative;
+
+    & > i {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}

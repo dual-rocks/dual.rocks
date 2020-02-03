@@ -1,4 +1,7 @@
 @import "~bulma/bulma";
+$fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";
 
 * {
   box-sizing: border-box;
@@ -17,7 +20,8 @@ body {
   overflow-x: hidden;
 }
 
-@import "./navbar.scss";
-@import "./footer.scss";
+@import "./elements/navbar.scss";
+@import "./elements/footer.scss";
+@import "./elements/profile-box.scss";
 @import "./pages/home.scss";
 @import "./pages/profile.scss";

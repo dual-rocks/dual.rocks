@@ -4,7 +4,7 @@
   "description": "dual.rocks UI",
   "main": "src/index.js",
   "scripts": {
-    "remove-assets-files": "rm assets/*.css assets/*.js",
+    "remove-assets-files": "rm -f assets/*.css assets/*.js && rm -rf assets/images/ assets/fonts/",
     "build": "npm run remove-assets-files && webpack --mode production",
     "build-dev": "npm run remove-assets-files && webpack --mode development",
     "build-watch": "webpack --mode development --watch"
@@ -23,8 +23,11 @@
   },
   "homepage": "https://github.com/dual-rocks/dual.rocks#readme",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.12.0",
     "bulma": "^0.8.0",
+    "cropperjs": "^1.5.6",
     "css-loader": "^3.4.2",
+    "file-loader": "^5.0.2",
     "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.13.1",
     "sass-loader": "^8.0.2",
