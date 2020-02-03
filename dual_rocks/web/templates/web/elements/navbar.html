@@ -13,7 +13,7 @@
     <div id="navbar" class="navbar-menu">
         <div class="navbar-end">
             {% if user.is_authenticated %}
-                <a class="navbar-item" href="{% url "web:profile" at=user.at %}">@{{ user.at }}</a>
+                <a class="navbar-item" href="{% url "web:profiles" %}">{% trans "Perfis" %}</a>
                 <a class="navbar-item" href="{% url "web:logout" %}">{% trans "Sair" %}</a>
             {% else %}
                 <a class="navbar-item" href="{% url "web:register" %}">{% trans "Criar conta" %}</a>

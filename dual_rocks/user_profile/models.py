@@ -2,8 +2,10 @@ from datetime import datetime
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
 from django.urls import reverse
+from django.core import validators
 from easy_thumbnails.files import get_thumbnailer
 from dual_rocks.authentication.models import User
+from dual_rocks.validators import ForbiddenValuesValidator
 
 
 class Profile(models.Model):
@@ -33,10 +35,32 @@ class Profile(models.Model):
         (PRONOUN_POLYAMORY, _('nós (poliamor)')),
     ]
 
-    user = models.OneToOneField(
+    user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        related_name='profile'
+        related_name='profiles'
+    )
+    at = models.CharField(
+        _('@'),
+        unique=True,
+        validators=[
+            validators.RegexValidator(
+                r'^[\w\.\_\-]{3,16}$',
+                _('Utilize apenas letras (A-Z), . (ponto), _ (underline) e/ou '
+                  '- (hífen). Com no mínimo 3 caracteres e no máximo 16.')
+            ),
+            ForbiddenValuesValidator(
+                [
+                    'admin',
+                    'login',
+                    'logout',
+                    'register',
+                    'profiles',
+                ],
+                _('Você não pode usar "%(value)s" como @.')
+            ),
+        ],
+        max_length=16
     )
     name = models.CharField(
         _('nome'),
@@ -69,7 +93,7 @@ class Profile(models.Model):
         return '{} profile'.format(self.user)
 
     def get_absolute_url(self):
-        return reverse('web:profile', kwargs={'at': self.user.at})
+        return reverse('web:profile', kwargs={'at': self.at})
 
     @property
     def picture_url(self):

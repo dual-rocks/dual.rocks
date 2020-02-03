@@ -8,7 +8,6 @@ class RegisterForm(forms.ModelForm):
     class Meta:
         model = User
         fields = [
-            'at',
             'email',
             'password',
         ]
