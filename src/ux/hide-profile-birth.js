@@ -1,9 +1,10 @@
 import {
   findByName,
-  bulmaFieldFromInput,
   bulmaHideElem,
   bulmaShowElem
 } from '../utils';
+
+const bulmaFieldFromInput = inputElem => inputElem.parentElement.parentElement.parentElement;
 
 (() => {
   const VISIBLE_BIRTH_PRONOUMS = ['H', 'S'];
