@@ -4,7 +4,7 @@
 {% block body %}
 <header>
     {% include "web/elements/navbar.html" %}
-    <h1 class="title has-text-centered">{% trans "você ainda não tem um perfil" %}</h1>
+    <h1 class="title has-text-centered">{% trans "criar um perfil" %}</h1>
 </header>
 <section class="hero is-light">
     <div class="columns is-centered">
@@ -13,7 +13,7 @@
                 <div class="container">
                     <h1 class="title">{% trans "crie um perfil" %}</h1>
                 </div>
-                <p>{% trans "Criar um perfil não é obrigatório mas é recomendado. Dessa forma as outras pessoas saberam quem é você." %}</p>
+                <p>{% trans "para interagir com outras pessoas." %}</p>
                 <hr />
                 <form method="post" enctype="multipart/form-data" data-profile-form>
                     {% csrf_token %}
@@ -25,7 +25,7 @@
                                     <button type="submit" class="button is-primary">{% trans "criar perfil" %}</button>
                                 </div>
                                 <div class="level-rigth">
-                                    <a href="{% url "web:home" %}">{% trans "Quero continuar sem perfil" %}</a>
+                                    <a href="{% url "web:profiles" %}">{% trans "Voltar para perfis" %}</a>
                                 </div>
                             </div>
                         </div>
