@@ -12,7 +12,7 @@
     <div class="columns is-multiline">
         {% for profile in user.profiles.all %}
         <div class="column is-one-quarter">
-            <a href="{% url "web:profile" at=profile.at %}" class="profile box">
+            <a href="{% url "web:profile:view" at=profile.at %}" class="profile box">
                 <img src="{{ profile.picture_url }}" />
                 <h2 class="title is-6 has-text-centered">{{ profile.name }}</h2>
                 <h2 class="subtitle is-6 has-text-centered">@{{ profile.at }}</h2>

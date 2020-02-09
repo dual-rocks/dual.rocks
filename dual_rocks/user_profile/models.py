@@ -98,7 +98,7 @@ class Profile(models.Model):
         return '{} profile'.format(self.user)
 
     def get_absolute_url(self):
-        return reverse('web:profile', kwargs={'at': self.at})
+        return reverse('web:profile:view', kwargs={'at': self.at})
 
     @property
     def picture_url(self):

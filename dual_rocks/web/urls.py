@@ -1,5 +1,6 @@
-from django.urls import path
+from django.urls import path, include
 from .views import (
+    has_profile,
     HomeView,
     LoginView,
     LogoutView,
@@ -7,6 +8,7 @@ from .views import (
     CreateProfileView,
     ProfilesView,
     profile_view_resolver,
+    EditProfileView,
 )
 
 app_name = 'web'
@@ -22,5 +24,8 @@ urlpatterns = [
         name='create-profile'
     ),
     path('profiles/', ProfilesView.as_view(), name='profiles'),
-    path('<str:at>/', profile_view_resolver, name='profile')
+    path('<str:at>/', include(([
+        path('', profile_view_resolver, name='view'),
+        path('edit/', has_profile(EditProfileView.as_view()), name='edit'),
+    ], 'web'), namespace='profile'))
 ]
