@@ -26,3 +26,7 @@ body {
 @import "./elements/crop-image-file-input-image-container.scss";
 @import "./pages/home.scss";
 @import "./pages/profile.scss";
+
+a.icon {
+  text-decoration: none !important;
+}
