@@ -1,6 +1,7 @@
 import json
 from django import forms
 from dual_rocks.user_profile.models import Profile
+from dual_rocks.forms import crop_image_from_data
 
 
 picture_widget = forms.FileInput(
@@ -26,6 +27,11 @@ class CreateProfileForm(forms.ModelForm):
             'picture': picture_widget
         }
 
+    picture_crop_data = forms.CharField()
+
+    def clean_picture(self):
+        return crop_image_from_data(self, 'picture', 'picture_crop_data')
+
 
 class UpdateProfileForm(forms.ModelForm):
     class Meta:
@@ -33,6 +39,5 @@ class UpdateProfileForm(forms.ModelForm):
         exclude = [
             'user',
             'at',
-            'picture',
-            'picture_crop_data'
+            'picture'
         ]

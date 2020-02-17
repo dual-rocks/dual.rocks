@@ -88,11 +88,6 @@ class Profile(models.Model):
         blank=True,
         null=True
     )
-    picture_crop_data = models.TextField(
-        _('dados de corte da foto'),
-        blank=True,
-        null=True
-    )
 
     def __str__(self):
         return '{} profile'.format(self.user)
