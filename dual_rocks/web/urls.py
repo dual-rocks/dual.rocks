@@ -1,6 +1,6 @@
 from django.urls import path, include
 from .views import (
-    has_profile,
+    required_profile_owner,
     HomeView,
     LoginView,
     LogoutView,
@@ -28,10 +28,14 @@ urlpatterns = [
     path('profiles/', ProfilesView.as_view(), name='profiles'),
     path('<str:at>/', include(([
         path('', profile_view_resolver, name='view'),
-        path('edit/', has_profile(EditProfileView.as_view()), name='edit'),
+        path(
+            'edit/',
+            required_profile_owner(EditProfileView.as_view()),
+            name='edit'
+        ),
         path(
             'update-picture/',
-            has_profile(UpdateProfilePictureView.as_view()),
+            required_profile_owner(UpdateProfilePictureView.as_view()),
             name='update_picture'
         ),
         path('remove-picture/', remove_profile_picture, name='remove_picture'),

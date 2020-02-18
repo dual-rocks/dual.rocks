@@ -6,6 +6,7 @@ from django.views.generic import TemplateView
 from django.views.generic.edit import UpdateView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.http import HttpResponseForbidden
 from dual_rocks.user_profile.models import Profile
 from dual_rocks.web.forms import (
     CreateProfileForm,
@@ -21,6 +22,15 @@ def has_profile(fn):
     return wrapper
 
 
+def required_profile_owner(fn):
+    @has_profile
+    def wrapper(request, profile):
+        if profile.user != request.user:
+            return HttpResponseForbidden()
+        return fn(request, profile=profile)
+    return wrapper
+
+
 @has_profile
 def profile_view_resolver(request, profile=None):
     if profile.user == request.user:
@@ -32,10 +42,12 @@ class ProfileView(TemplateView):
     template_name = 'web/profile.html'
 
 
+@method_decorator(login_required, name='dispatch')
 class MyProfileView(TemplateView):
     template_name = 'web/my_profile.html'
 
 
+@method_decorator(login_required, name='dispatch')
 class CreateProfileView(UpdateView):
     model = Profile
     form_class = CreateProfileForm
@@ -45,6 +57,7 @@ class CreateProfileView(UpdateView):
         return Profile(user=self.request.user)
 
 
+@method_decorator(login_required, name='dispatch')
 class EditProfileView(UpdateView):
     model = Profile
     form_class = UpdateProfileForm
@@ -64,7 +77,7 @@ class UpdateProfilePictureView(UpdateView):
         return self.kwargs.get('profile')
 
 
-@has_profile
+@required_profile_owner
 def remove_profile_picture(request, profile):
     profile.picture = None
     profile.save()
