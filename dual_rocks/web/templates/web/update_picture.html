@@ -19,6 +19,11 @@
                     {{ form|bulma }}
                     <div class="field">
                         <div class="control">
+                            <a href="{% url "web:profile:remove_picture" at=form.instance.at %}" type="submit" class="button is-small is-danger" data-confirm="{% trans "Você tem certeza que quer remover a foto atual do seu perfil?" %}">{% trans "remover foto" %}</a>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
                             <div class="level">
                                 <div class="level-left">
                                     <button type="submit" class="button is-primary">{% trans "atualizar" %}</button>

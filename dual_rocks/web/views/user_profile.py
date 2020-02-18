@@ -1,4 +1,7 @@
-from django.shortcuts import get_object_or_404
+from django.shortcuts import (
+    get_object_or_404,
+    redirect,
+)
 from django.views.generic import TemplateView
 from django.views.generic.edit import UpdateView
 from django.contrib.auth.decorators import login_required
@@ -59,6 +62,13 @@ class UpdateProfilePictureView(UpdateView):
 
     def get_object(self):
         return self.kwargs.get('profile')
+
+
+@has_profile
+def remove_profile_picture(request, profile):
+    profile.picture = None
+    profile.save()
+    return redirect('web:profile:view', at=profile.at)
 
 
 @method_decorator(login_required, name='dispatch')
