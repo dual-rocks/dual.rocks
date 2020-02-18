@@ -7,6 +7,7 @@ from dual_rocks.user_profile.models import Profile
 from dual_rocks.web.forms import (
     CreateProfileForm,
     UpdateProfileForm,
+    UpdateProfilePictureForm,
 )
 
 
@@ -45,6 +46,16 @@ class EditProfileView(UpdateView):
     model = Profile
     form_class = UpdateProfileForm
     template_name = 'web/edit_profile.html'
+
+    def get_object(self):
+        return self.kwargs.get('profile')
+
+
+@method_decorator(login_required, name='dispatch')
+class UpdateProfilePictureView(UpdateView):
+    model = Profile
+    form_class = UpdateProfilePictureForm
+    template_name = 'web/update_picture.html'
 
     def get_object(self):
         return self.kwargs.get('profile')

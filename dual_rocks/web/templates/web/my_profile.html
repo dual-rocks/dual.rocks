@@ -14,9 +14,9 @@
         <span class="icon"><i class="fas fa-pencil-alt"></i></span>
         <span>{% trans "Editar Perfil" %}</span>
     </a>
-    <a href="" class="button is-rounded">
+    <a href="{% url "web:profile:update_picture" at=profile.at %}" class="button is-rounded">
         <span class="icon"><i class="fas fa-camera"></i></span>
-        <span>{% trans "Alterar foto do Perfil" %}</span>
+        <span>{% trans "Atualizar foto do Perfil" %}</span>
     </a>
 </div>
 <hr />

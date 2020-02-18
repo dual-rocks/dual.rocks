@@ -41,3 +41,19 @@ class UpdateProfileForm(forms.ModelForm):
             'at',
             'picture'
         ]
+
+
+class UpdateProfilePictureForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = [
+            'picture'
+        ]
+        widgets = {
+            'picture': picture_widget
+        }
+
+    picture_crop_data = forms.CharField()
+
+    def clean_picture(self):
+        return crop_image_from_data(self, 'picture', 'picture_crop_data')

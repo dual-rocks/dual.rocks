@@ -9,6 +9,7 @@ from .views import (
     ProfilesView,
     profile_view_resolver,
     EditProfileView,
+    UpdateProfilePictureView,
 )
 
 app_name = 'web'
@@ -27,5 +28,10 @@ urlpatterns = [
     path('<str:at>/', include(([
         path('', profile_view_resolver, name='view'),
         path('edit/', has_profile(EditProfileView.as_view()), name='edit'),
+        path(
+            'update-picture/',
+            has_profile(UpdateProfilePictureView.as_view()),
+            name='update_picture'
+        ),
     ], 'web'), namespace='profile'))
 ]
