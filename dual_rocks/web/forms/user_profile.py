@@ -27,7 +27,7 @@ class CreateProfileForm(forms.ModelForm):
             'picture': picture_widget
         }
 
-    picture_crop_data = forms.CharField()
+    picture_crop_data = forms.CharField(required=False)
 
     def clean_picture(self):
         return crop_image_from_data(self, 'picture', 'picture_crop_data')
@@ -53,7 +53,7 @@ class UpdateProfilePictureForm(forms.ModelForm):
             'picture': picture_widget
         }
 
-    picture_crop_data = forms.CharField()
+    picture_crop_data = forms.CharField(required=False)
 
     def clean_picture(self):
         return crop_image_from_data(self, 'picture', 'picture_crop_data')
