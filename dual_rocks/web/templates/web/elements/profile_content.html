@@ -6,7 +6,9 @@
         </div>
     </div>
     <div class="column">
+        {% if profile.bio %}
         <p><small><strong>{% trans "BIO" %}</strong></small>:</p>
         <p>{{ profile.bio }}</p>
+        {% endif %}
     </div>
 </div>
