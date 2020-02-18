@@ -1,0 +1,12 @@
+{% load i18n %}
+<div class="columns">
+    <div class="column is-one-third">
+        <div class="notification is-primary">
+            {% include "web/elements/profile_summary.html" %}
+        </div>
+    </div>
+    <div class="column">
+        <p><small><strong>{% trans "BIO" %}</strong></small>:</p>
+        <p>{{ profile.bio }}</p>
+    </div>
+</div>

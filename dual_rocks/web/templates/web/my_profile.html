@@ -1,5 +1,7 @@
 {% extends "web/layouts/base.html" %}
 
+{% load i18n %}
+
 {% block body %}
 <div class="profile">
     <header>
@@ -7,18 +9,19 @@
         <img src="{{ profile.picture_url }}" />
     </header>
 </div>
+<div class="has-text-centered">
+    <a href="{% url "web:profile:edit" at=profile.at %}" class="button is-rounded">
+        <span class="icon"><i class="fas fa-pencil-alt"></i></span>
+        <span>{% trans "Editar Perfil" %}</span>
+    </a>
+    <a href="" class="button is-rounded">
+        <span class="icon"><i class="fas fa-camera"></i></span>
+        <span>{% trans "Alterar foto do Perfil" %}</span>
+    </a>
+</div>
+<hr />
 <div class="container is-fluid">
-    <div class="columns">
-        <div class="column is-one-third">
-            <div class="notification is-primary">
-                <h1 class="title">
-                    {{ profile.name }}
-                    <small><a href="{% url "web:profile:edit" at=profile.at %}" class="icon"><i class="fas fa-pencil-alt"></i></a></small>
-                </h1>
-                <h2 class="subtitle">@{{ profile.at }}</h2>
-            </div>
-        </div>
-    </div>
+    {% include "web/elements/profile_content.html" %}
 </div>
 {% include "web/elements/footer.html" %}
 {% endblock %}

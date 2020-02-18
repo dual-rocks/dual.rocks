@@ -8,14 +8,7 @@
     </header>
 </div>
 <div class="container is-fluid">
-    <div class="columns">
-        <div class="column is-one-third">
-            <div class="notification is-primary">
-                <h1 class="title">{{ profile.name }}</h1>
-                <h2 class="subtitle">@{{ profile.at }}</h2>
-            </div>
-        </div>
-    </div>
+    {% include "web/elements/profile_content.html" %}
 </div>
 {% include "web/elements/footer.html" %}
 {% endblock %}
