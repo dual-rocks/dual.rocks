@@ -3,6 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.db import models
 from django.urls import reverse
 from django.core import validators
+from django.contrib.staticfiles.storage import staticfiles_storage
 from easy_thumbnails.files import get_thumbnailer
 from dual_rocks.authentication.models import User
 from dual_rocks.validators import ForbiddenValuesValidator
@@ -108,5 +109,5 @@ class Profile(models.Model):
     @property
     def picture_url(self):
         if not self.picture:
-            return 'https://picsum.photos/200'
+            return staticfiles_storage.url('profile/no-avatar.jpg')
         return get_thumbnailer(self.picture)['profile_picture'].url
