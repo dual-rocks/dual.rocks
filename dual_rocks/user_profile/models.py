@@ -88,6 +88,10 @@ class Profile(models.Model):
         blank=True,
         null=True
     )
+    bio = models.TextField(
+        _('bio'),
+        blank=True
+    )
 
     def __str__(self):
         return '{} profile'.format(self.user)
