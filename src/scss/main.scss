@@ -20,6 +20,11 @@ body {
   overflow-x: hidden;
 }
 
+.has-vertical-margin {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 @import "./elements/navbar.scss";
 @import "./elements/footer.scss";
 @import "./elements/profile-box.scss";
