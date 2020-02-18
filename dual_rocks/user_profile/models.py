@@ -88,6 +88,12 @@ class Profile(models.Model):
         blank=True,
         null=True
     )
+    status = models.CharField(
+        _('status'),
+        max_length=64,
+        blank=True,
+        null=False
+    )
     bio = models.TextField(
         _('bio'),
         blank=True
