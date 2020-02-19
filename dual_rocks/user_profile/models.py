@@ -1,12 +1,16 @@
 from datetime import datetime
+from io import BytesIO
+from PIL import Image
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
 from django.urls import reverse
 from django.core import validators
 from django.contrib.staticfiles.storage import staticfiles_storage
+from django.core.files import File
 from easy_thumbnails.files import get_thumbnailer
 from dual_rocks.authentication.models import User
 from dual_rocks.validators import ForbiddenValuesValidator
+from dual_rocks.utils import apply_watermark
 
 
 class Profile(models.Model):
@@ -134,3 +138,51 @@ class Photo(models.Model):
 
     def get_absolute_url(self):
         return reverse('web:profile:view', kwargs={'at': self.profile.at})
+
+
+class UserViewPhoto(models.Model):
+    class Meta:
+        unique_together = ['user', 'photo']
+
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='photo_views'
+    )
+    photo = models.ForeignKey(
+        Photo,
+        on_delete=models.CASCADE,
+        related_name='views'
+    )
+    processed_image = models.ImageField(_('imagem processada'))
+    created_at = models.DateTimeField(
+        _('criado em'),
+        auto_now=True,
+        editable=False
+    )
+
+    def __str__(self): return f'{self.user} - {self.photo}'
+
+    @classmethod
+    def get_or_create(cls, user, photo):
+        try:
+            return cls.objects.get(
+                user=user,
+                photo=photo
+            )
+        except cls.DoesNotExist:
+            image = Image.open(photo.image.file)
+            watermarked = apply_watermark(image, user.email)
+            watermarked_io = BytesIO()
+            watermarked.save(watermarked_io, format='JPEG')
+            instance = cls(
+                user=user,
+                photo=photo
+            )
+            instance.processed_image.save(
+                'processed_image.jpg',
+                File(watermarked_io),
+                save=False
+            )
+            instance.save()
+            return instance
