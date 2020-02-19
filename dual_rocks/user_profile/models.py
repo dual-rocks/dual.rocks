@@ -111,3 +111,17 @@ class Profile(models.Model):
         if not self.picture:
             return staticfiles_storage.url('profile/no-avatar.jpg')
         return get_thumbnailer(self.picture)['profile_picture'].url
+
+
+class Photo(models.Model):
+    profile = models.ForeignKey(
+        Profile,
+        on_delete=models.CASCADE,
+        related_name='photos'
+    )
+    image = models.ImageField(_('imagem'))
+    published_at = models.DateTimeField(
+        _('publicado em'),
+        auto_now=True,
+        editable=False
+    )
