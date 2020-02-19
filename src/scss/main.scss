@@ -23,6 +23,10 @@ body {
 .has-vertical-margin {
   margin-top: 1rem;
   margin-bottom: 1rem;
+
+  &:first-child {
+    margin-top: auto;
+  }
 }
 
 @import "./elements/navbar.scss";
