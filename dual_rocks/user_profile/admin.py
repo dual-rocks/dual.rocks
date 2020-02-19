@@ -15,6 +15,7 @@ class ProfileAdmin(admin.ModelAdmin):
 class PhotoAdmin(admin.ModelAdmin):
     pass
 
+
 @admin.register(UserViewPhoto)
 class UserViewPhotoAdmin(admin.ModelAdmin):
     pass
