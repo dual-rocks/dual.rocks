@@ -101,7 +101,7 @@ class Profile(models.Model):
     )
 
     def __str__(self):
-        return '{} profile'.format(self.user)
+        return '{} profile / {}'.format(self.at, self.user)
 
     def get_absolute_url(self):
         return reverse('web:profile:view', kwargs={'at': self.at})
@@ -114,6 +114,9 @@ class Profile(models.Model):
 
 
 class Photo(models.Model):
+    class Meta:
+        ordering = ['-published_at']
+
     profile = models.ForeignKey(
         Profile,
         on_delete=models.CASCADE,
@@ -125,3 +128,9 @@ class Photo(models.Model):
         auto_now=True,
         editable=False
     )
+
+    def __str__(self):
+        return 'Photo #{} / {}'.format(self.id, self.profile)
+
+    def get_absolute_url(self):
+        return reverse('web:profile:view', kwargs={'at': self.profile.at})
