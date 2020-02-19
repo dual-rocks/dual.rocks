@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n web_tags thumbnail %}
 <div class="columns">
     <div class="column is-one-third">
         <div class="notification is-primary">
@@ -27,7 +27,10 @@
             <div class="columns is-multiline is-mobile is-marginless">
                 {% for photo in photos %}
                 <div class="column is-one-quarter-desktop is-half-mobile">
-                    <img src="{{ photo.image.url }}" />
+                    {% get_user_view_photo photo as view_photo %}
+                    <a href="{{ view_photo.processed_image.url }}" target="_blank">
+                        <img src="{{ view_photo.processed_image|thumbnail_url:'photo' }}" alt="{% trans "Foto" %} #{{photo.id}}" />
+                    </a>
                 </div>
                 {% endfor %}
             </div>

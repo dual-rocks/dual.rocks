@@ -159,5 +159,9 @@ THUMBNAIL_ALIASES = {
             'size': (200, 200),
             'crop': True
         },
+        'photo': {
+            'size': (400, 400),
+            'crop': False
+        }
     },
 }
