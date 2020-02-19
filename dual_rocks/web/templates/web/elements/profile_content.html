@@ -6,9 +6,35 @@
         </div>
     </div>
     <div class="column">
-        {% if profile.bio %}
-        <p><small><strong>{% trans "BIO" %}</strong></small>:</p>
-        <p>{{ profile.bio }}</p>
-        {% endif %}
+        <div class="has-vertical-margin">
+            {% if profile.bio %}
+            <p><small><strong>{% trans "BIO" %}</strong></small>:</p>
+            <p>{{ profile.bio }}</p>
+            {% endif %}
+        </div>
+        <div class="has-vertical-margin">
+            <p><small><strong>{% trans "FOTOS" %}</strong></small>:</p>
+            {% if profile.user == user %}
+            <a href="{% url "web:profile:add_photo" at=profile.at %}" class="button is-primary is-light is-small">
+                <span class="icon">
+                    <i class="fas fa-plus"></i>
+                </span>
+                <span>{% trans "Adicionar foto" %}</span>
+            </a>
+            {% endif %}
+            {% with profile.photos.all as photos %}
+            {% if photos.count > 0 %}
+            <div class="columns is-multiline is-mobile is-marginless">
+                {% for photo in photos %}
+                <div class="column is-one-quarter-desktop is-half-mobile">
+                    <img src="{{ photo.image.url }}" />
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p><small><i>{% trans "Não carregou nenhuma foto" %}</i></small></p>
+            {% endif %}
+            {% endwith %}
+        </div>
     </div>
 </div>

@@ -1,6 +1,9 @@
 import json
 from django import forms
-from dual_rocks.user_profile.models import Profile
+from dual_rocks.user_profile.models import (
+    Profile,
+    Photo,
+)
 from dual_rocks.forms import crop_image_from_data
 
 
@@ -57,3 +60,28 @@ class UpdateProfilePictureForm(forms.ModelForm):
 
     def clean_picture(self):
         return crop_image_from_data(self, 'picture', 'picture_crop_data')
+
+
+class CreatePhotoForm(forms.ModelForm):
+    class Meta:
+        model = Photo
+        fields = [
+            'image'
+        ]
+        widgets = {
+            'image': forms.FileInput(
+                attrs={
+                    'data-crop-image-file-input': json.dumps({
+                        'target': '[name=image_crop_data]',
+                        'options': {
+                            'viewMode': 1
+                        }
+                    })
+                }
+            )
+        }
+
+    image_crop_data = forms.CharField(required=False)
+
+    def clean_image(self):
+        return crop_image_from_data(self, 'image', 'image_crop_data')

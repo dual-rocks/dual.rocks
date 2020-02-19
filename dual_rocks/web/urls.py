@@ -11,6 +11,7 @@ from .views import (
     EditProfileView,
     UpdateProfilePictureView,
     remove_profile_picture,
+    CreatePhotoView,
 )
 
 app_name = 'web'
@@ -39,5 +40,10 @@ urlpatterns = [
             name='update_picture'
         ),
         path('remove-picture/', remove_profile_picture, name='remove_picture'),
+        path(
+            'add-photo/',
+            required_profile_owner(CreatePhotoView.as_view()),
+            name='add_photo'
+        ),
     ], 'web'), namespace='profile'))
 ]

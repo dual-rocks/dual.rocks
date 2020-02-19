@@ -7,11 +7,15 @@ from django.views.generic.edit import UpdateView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.http import HttpResponseForbidden
-from dual_rocks.user_profile.models import Profile
+from dual_rocks.user_profile.models import (
+    Profile,
+    Photo,
+)
 from dual_rocks.web.forms import (
     CreateProfileForm,
     UpdateProfileForm,
     UpdateProfilePictureForm,
+    CreatePhotoForm,
 )
 
 
@@ -87,3 +91,13 @@ def remove_profile_picture(request, profile):
 @method_decorator(login_required, name='dispatch')
 class ProfilesView(TemplateView):
     template_name = 'web/profiles.html'
+
+
+@method_decorator(login_required, name='dispatch')
+class CreatePhotoView(UpdateView):
+    model = Photo
+    form_class = CreatePhotoForm
+    template_name = 'web/add_photo.html'
+
+    def get_object(self):
+        return Photo(profile=self.kwargs.get('profile'))
