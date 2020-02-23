@@ -1,22 +1,30 @@
 from PIL import Image, ImageDraw, ImageFont
 
-PIL_FONT = ImageFont.truetype('Pillow/Tests/fonts/FreeMono.ttf', 18)
+WATERMARK_TEXT_FONT = ImageFont.truetype('./fonts/coolvetica.ttf', 24)
+WATERMARK_FONT = ImageFont.truetype('./fonts/coolvetica.ttf', 16)
 SPACING = 10
 
 
 def apply_watermark(image, text):
+    text = text.upper()
     out = image.convert('RGBA')
     watermark = Image.new('RGBA', out.size, (255, 255, 255, 0))
 
     stamp = Image.new('RGBA', out.size, (255, 255, 255, 0))
     drawer = ImageDraw.Draw(stamp)
     drawer.text(
-        (SPACING, SPACING),
+        (SPACING + 1, SPACING + 1),
         text,
-        font=PIL_FONT,
+        font=WATERMARK_TEXT_FONT,
+        fill=(0, 0, 0, 75)
+    )
+    drawer.text(
+        (SPACING - 1, SPACING - 1),
+        text,
+        font=WATERMARK_TEXT_FONT,
         fill=(255, 255, 255, 150)
     )
-    text_w, text_h = drawer.textsize(text, font=PIL_FONT)
+    text_w, text_h = drawer.textsize(text, font=WATERMARK_TEXT_FONT)
     stamp = stamp.crop(
         (
             0,
@@ -24,7 +32,20 @@ def apply_watermark(image, text):
             text_w + SPACING * 2,
             text_h + SPACING * 2,
         )
-    ).rotate(10, expand=True)
+    ).rotate(10, expand=True, resample=Image.BICUBIC)
+    drawer = ImageDraw.Draw(stamp)
+    drawer.text(
+        (7, 7),
+        'dual.rocks',
+        font=WATERMARK_FONT,
+        fill=(0, 0, 0, 75)
+    )
+    drawer.text(
+        (5, 5),
+        'dual.rocks',
+        font=WATERMARK_FONT,
+        fill=(255, 255, 255, 150)
+    )
 
     out_w, out_h = out.size
     stamp_w, stamp_h = stamp.size

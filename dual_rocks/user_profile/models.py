@@ -1,3 +1,4 @@
+import uuid
 from datetime import datetime
 from io import BytesIO
 from PIL import Image
@@ -180,7 +181,7 @@ class UserViewPhoto(models.Model):
                 photo=photo
             )
             instance.processed_image.save(
-                'processed_image.jpg',
+                f'{user.email}.{photo.id}.{uuid.uuid4()}.jpg',
                 File(watermarked_io),
                 save=False
             )
