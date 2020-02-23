@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'dual_rocks.authentication',
     'dual_rocks.web',
     'dual_rocks.user_profile',
+    'dual_rocks.privacy',
     'bulma',
     'easy_thumbnails',
 ]
