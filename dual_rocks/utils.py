@@ -1,8 +1,13 @@
-from PIL import Image, ImageDraw, ImageFont
+from PIL import (
+    Image,
+    ImageDraw,
+    ImageFont,
+    ImageFilter
+)
 
-WATERMARK_TEXT_FONT = ImageFont.truetype('./fonts/coolvetica.ttf', 24)
-WATERMARK_FONT = ImageFont.truetype('./fonts/coolvetica.ttf', 16)
-SPACING = 10
+WATERMARK_TEXT_FONT = ImageFont.truetype('./fonts/coolvetica.ttf', 14)
+WATERMARK_FONT = ImageFont.truetype('./fonts/coolvetica.ttf', 12)
+SPACING = 15
 
 
 def apply_watermark(image, text):
@@ -57,3 +62,7 @@ def apply_watermark(image, text):
     out.alpha_composite(watermark)
     out = out.convert('RGB')
     return out
+
+
+def apply_blur(image):
+    return image.filter(ImageFilter.GaussianBlur(20))
