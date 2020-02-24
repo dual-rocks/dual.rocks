@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'dual_rocks.privacy',
     'bulma',
     'easy_thumbnails',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -166,5 +167,29 @@ THUMBNAIL_ALIASES = {
             'size': (400, 400),
             'crop': False
         }
+    },
+}
+
+
+# Chat
+
+ASGI_APPLICATION = 'dual_rocks.routing.application'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [(
+                config(
+                    'DUAL_ROCKS_REDIS_HOST',
+                    default='127.0.0.1'
+                ),
+                config(
+                    'DUAL_ROCKS_REDIS_PORT',
+                    cast=int,
+                    default=6379
+                )
+            )],
+        },
     },
 }

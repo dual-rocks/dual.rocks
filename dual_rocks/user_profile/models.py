@@ -58,6 +58,7 @@ class Profile(models.Model):
                     'logout',
                     'register',
                     'profiles',
+                    'chat',
                 ],
                 _('Você não pode usar "%(value)s" como @.')
             ),
@@ -110,6 +111,10 @@ class Profile(models.Model):
     @property
     def picture_url(self):
         return self.get_picture_url()
+
+    @property
+    def chat_room_group_name(self):
+        return f'chat_profile_{self.id}'
 
     def get_picture_url(self, user=None):
         if not self.picture:

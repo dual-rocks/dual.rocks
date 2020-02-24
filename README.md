@@ -10,6 +10,8 @@
 | DUAL_ROCKS_DEFAULT_DATABASE | `'sqlite:///db.sqlite3'` |
 | DUAL_ROCKS_MEDIA_ROOT | `'./media/'` |
 | DUAL_ROCKS_SERVER_MEDIA_FILES | `True` |
+| DUAL_ROCKS_REDIS_HOST | `'127.0.0.1'` |
+| DUAL_ROCKS_REDIS_PORT | `6379` |
 
 ## dual.rocks UI
 
