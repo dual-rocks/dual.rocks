@@ -109,6 +109,7 @@ def set_current_profile(request, profile):
     CurrentProfileMiddleware.set_current_profile(request, profile)
     return redirect('web:profile:view', at=profile.at)
 
+
 @login_required
 def unset_current_profile(request):
     CurrentProfileMiddleware.unset_current_profile(request)
