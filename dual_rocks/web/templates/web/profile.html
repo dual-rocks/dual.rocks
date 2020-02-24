@@ -1,12 +1,12 @@
 {% extends "web/layouts/base.html" %}
 
-{% load i18n %}
+{% load i18n web_tags %}
 
 {% block body %}
 <div class="profile">
     <header>
         {% include "web/elements/navbar.html" %}
-        <img src="{{ profile.picture_url }}" alt="{% trans "Foto do perfil" %}" />
+        <img src="{% get_picture_url profile %}" alt="{% trans "Foto do perfil" %}" />
     </header>
 </div>
 <div class="container is-fluid has-vertical-margin">
