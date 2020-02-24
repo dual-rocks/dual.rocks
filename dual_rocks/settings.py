@@ -34,13 +34,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bulma',
+    'easy_thumbnails',
+    'channels',
+    'rest_framework',
     'dual_rocks.authentication',
     'dual_rocks.web',
     'dual_rocks.user_profile',
     'dual_rocks.privacy',
-    'bulma',
-    'easy_thumbnails',
-    'channels',
 ]
 
 MIDDLEWARE = [
