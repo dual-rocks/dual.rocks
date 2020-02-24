@@ -2,13 +2,16 @@ import uuid
 import json
 from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer
+from dual_rocks.user_profile.middleware import CurrentProfileMiddleware
 from dual_rocks.user_profile.models import Profile
 
 
 class ChatConsumer(WebsocketConsumer):
     def connect(self):
         user = self.scope['user']
-        current_profile_id = self.scope['session'].get('current_profile_id')
+        current_profile_id = self.scope['session'].get(
+            CurrentProfileMiddleware.CURRENT_PROFILE_ID_FIELD
+        )
         try:
             self.profile = user.profiles.get(id=current_profile_id)
             self.room_group_name = self.profile.chat_room_group_name
