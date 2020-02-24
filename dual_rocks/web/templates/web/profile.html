@@ -10,6 +10,11 @@
     </header>
 </div>
 <div class="container is-fluid has-vertical-margin">
+    {% if user.is_anonymous %}
+    <p class="notification is-warning">
+        {% trans "Por motivos de privacidade, todas as fotos estão com blur. Entre na sua conta ou crie uma, para ter acesso." %}
+    </p>
+    {% endif %}
     {% include "web/elements/profile_content.html" %}
 </div>
 {% include "web/elements/footer.html" %}
