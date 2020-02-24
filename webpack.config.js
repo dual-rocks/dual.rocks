@@ -3,6 +3,11 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: './src/index.js',
+  resolve: {
+    alias: {
+      vue: 'vue/dist/vue.common.js'
+    }
+  },
   output: {
     path: path.resolve(__dirname, 'assets'),
     filename: 'dual.rocks.js'

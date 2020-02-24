@@ -1,0 +1,58 @@
+.chat {
+  $self: &;
+  $full-width: calc(100% - 4rem);
+
+  position: fixed;
+  bottom: 0;
+  right: 2rem;
+  width: 300px;
+  max-width: $full-width;
+  background-color: white;
+  border-radius: .5rem .5rem 0 0;
+  box-shadow: 0 0 .5rem .25rem rgba(0, 0, 0, .125);
+  overflow: hidden;
+
+  &--full-screen {
+    width: $full-width;
+
+    #{$self}__body {
+      height: calc(100vh - 7rem);
+      max-height: none;
+    }
+  }
+
+  &__header {
+    display: flex;
+    background-color: $primary;
+    color: $light;
+
+    &__title {
+      flex-grow: 1;
+      padding: .5rem;
+      cursor: pointer;
+    }
+
+    &__actions {
+      flex-grow: 0;
+      padding: .5rem;
+
+      &__action {
+        margin-left: .5rem;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: .5rem;
+  }
+
+  &__body {
+    height: 400px;
+    max-height: 50vh;
+  }
+}
