@@ -53,7 +53,7 @@ urlpatterns = [
             name='add_photo'
         ),
         path(
-            'set-as-current-profile',
+            'set-as-current-profile/',
             set_current_profile,
             name='set_as_current_profile'
         )
