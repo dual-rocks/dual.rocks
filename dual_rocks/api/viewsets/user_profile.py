@@ -20,4 +20,4 @@ class MyProfilesViewSet(viewsets.ModelViewSet):
         if request.current_profile:
             serializer = self.get_serializer(request.current_profile)
             return Response(serializer.data)
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response(status=status.HTTP_404_NOT_FOUND)
