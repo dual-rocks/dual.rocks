@@ -2,7 +2,6 @@ from django.contrib import admin
 from .models import (
     Profile,
     Photo,
-    UserViewPhoto,
 )
 
 
@@ -13,9 +12,4 @@ class ProfileAdmin(admin.ModelAdmin):
 
 @admin.register(Photo)
 class PhotoAdmin(admin.ModelAdmin):
-    pass
-
-
-@admin.register(UserViewPhoto)
-class UserViewPhotoAdmin(admin.ModelAdmin):
     pass
