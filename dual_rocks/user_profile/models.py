@@ -12,6 +12,7 @@ from easy_thumbnails.files import get_thumbnailer
 from dual_rocks.authentication.models import User
 from dual_rocks.validators import ForbiddenValuesValidator
 from dual_rocks.utils import apply_watermark
+from dual_rocks.privacy.models import ImageWithPrivacy
 
 
 class Profile(models.Model):
@@ -113,9 +114,19 @@ class Profile(models.Model):
 
     @property
     def picture_url(self):
+        return self.get_picture_url()
+
+    def get_picture_url(self, user=None):
         if not self.picture:
             return staticfiles_storage.url('profile/no-avatar.jpg')
-        return get_thumbnailer(self.picture)['profile_picture'].url
+        image_with_privacy = ImageWithPrivacy.get_or_create(
+            user,
+            self,
+            'picture'
+        )
+        return get_thumbnailer(
+            image_with_privacy.processed_image
+        )['profile_picture'].url
 
 
 class Photo(models.Model):
