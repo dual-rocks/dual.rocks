@@ -19,6 +19,7 @@ class CurrentProfileMiddleware:
             CurrentProfileMiddleware.CURRENT_PROFILE_ID_FIELD]
 
     def __call__(self, request):
+        request.current_profile = None
         current_profile_id = request.session.get(
             CurrentProfileMiddleware.CURRENT_PROFILE_ID_FIELD
         )
