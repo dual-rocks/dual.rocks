@@ -18,6 +18,17 @@
         <span class="icon"><i class="fas fa-camera"></i></span>
         <span>{% trans "Atualizar foto do Perfil" %}</span>
     </a>
+    {% if current_profile == profile %}
+    <a href="{% url "web:unset_current_profile" %}" class="button is-rounded">
+        <span class="icon"><i class="fas fa-user"></i></span>
+        <span>{% trans "Não utilizar mais esse perfil como atual" %}</span>
+    </a>
+    {% else %}
+    <a href="{% url "web:profile:set_as_current_profile" at=profile.at %}" class="button is-rounded">
+        <span class="icon"><i class="fas fa-user"></i></span>
+        <span>{% trans "Utilizar como perfil atual" %}</span>
+    </a>
+    {% endif %}
 </div>
 <div class="container is-fluid has-vertical-margin">
     {% include "web/elements/profile_content.html" %}

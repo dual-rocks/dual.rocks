@@ -12,6 +12,8 @@ from .views import (
     UpdateProfilePictureView,
     remove_profile_picture,
     CreatePhotoView,
+    set_current_profile,
+    unset_current_profile,
 )
 
 app_name = 'web'
@@ -27,6 +29,11 @@ urlpatterns = [
         name='create-profile'
     ),
     path('profiles/', ProfilesView.as_view(), name='profiles'),
+    path(
+        'unset-current-profile/',
+        unset_current_profile,
+        name='unset_current_profile'
+    ),
     path('<str:at>/', include(([
         path('', profile_view_resolver, name='view'),
         path(
@@ -45,5 +52,10 @@ urlpatterns = [
             required_profile_owner(CreatePhotoView.as_view()),
             name='add_photo'
         ),
+        path(
+            'set-as-current-profile',
+            set_current_profile,
+            name='set_as_current_profile'
+        )
     ], 'web'), namespace='profile'))
 ]

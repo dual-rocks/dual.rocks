@@ -17,6 +17,7 @@ from dual_rocks.web.forms import (
     UpdateProfilePictureForm,
     CreatePhotoForm,
 )
+from dual_rocks.user_profile.middleware import CurrentProfileMiddleware
 
 
 def has_profile(fn):
@@ -101,3 +102,14 @@ class CreatePhotoView(UpdateView):
 
     def get_object(self):
         return Photo(profile=self.kwargs.get('profile'))
+
+
+@required_profile_owner
+def set_current_profile(request, profile):
+    CurrentProfileMiddleware.set_current_profile(request, profile)
+    return redirect('web:profile:view', at=profile.at)
+
+@login_required
+def unset_current_profile(request):
+    CurrentProfileMiddleware.unset_current_profile(request)
+    return redirect('web:profiles')
