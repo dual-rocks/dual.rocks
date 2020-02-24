@@ -1,17 +1,12 @@
-import uuid
 from datetime import datetime
-from io import BytesIO
-from PIL import Image
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
 from django.urls import reverse
 from django.core import validators
 from django.contrib.staticfiles.storage import staticfiles_storage
-from django.core.files import File
 from easy_thumbnails.files import get_thumbnailer
 from dual_rocks.authentication.models import User
 from dual_rocks.validators import ForbiddenValuesValidator
-from dual_rocks.utils import apply_watermark
 from dual_rocks.privacy.models import ImageWithPrivacy
 
 
