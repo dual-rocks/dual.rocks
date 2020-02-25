@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'dual_rocks.web',
     'dual_rocks.user_profile',
     'dual_rocks.privacy',
+    'dual_rocks.chat',
 ]
 
 MIDDLEWARE = [
