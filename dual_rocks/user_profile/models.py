@@ -128,6 +128,15 @@ class Profile(models.Model):
             image_with_privacy.processed_image
         )['profile_picture'].url
 
+    @property
+    def messages(self):
+        from dual_rocks.chat.models import Message
+
+        return Message.objects.filter(
+            models.Q(from_profile=self) |
+            models.Q(to_profile=self)
+        )
+
 
 class Photo(models.Model):
     class Meta:
