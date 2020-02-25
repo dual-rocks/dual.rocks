@@ -47,12 +47,40 @@
     position: absolute;
     bottom: 0;
     left: 0;
+    z-index: 1;
     width: 100%;
-    padding: .5rem;
+    padding: 0 .5rem;
+
+    & > .notification {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
   }
 
   &__body {
     height: 400px;
     max-height: 50vh;
+    overflow-x: auto;
+  }
+
+  &__select-profile {
+    max-height: 40vh;
+    padding: .5rem;
+    overflow-x: auto;
+
+    &__title {
+      text-transform: uppercase;
+      color: $grey;
+
+      strong {
+        color: currentColor;
+      }
+    }
+  }
+
+  &__critical-error {
+    &__generic {
+      padding: 1rem;
+    }
   }
 }

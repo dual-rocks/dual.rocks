@@ -7,7 +7,9 @@ const pt_BR = {
   select_profile: 'Selecione um perfil',
   loading: 'Carregando...',
   login: 'Entrar na sua conta',
-  register: 'Criar conta'
+  register: 'Criar conta',
+  not_has_profile: 'Você não tem nenhum perfil!',
+  create_profile: 'Criar perfil'
 };
 
 Vue.locales({
