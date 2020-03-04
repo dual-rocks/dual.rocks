@@ -2,7 +2,7 @@ from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework.exceptions import NotFound
 from dual_rocks.user_profile.models import Profile
 from dual_rocks.api.serializers import ProfileSerializer
 
@@ -17,7 +17,7 @@ class MyProfilesViewSet(viewsets.ModelViewSet):
 
     @action(detail=False, url_path='current')
     def current_profile(self, request):
-        if request.current_profile:
-            serializer = self.get_serializer(request.current_profile)
-            return Response(serializer.data)
-        return Response(status=status.HTTP_404_NOT_FOUND)
+        if not request.current_profile:
+            raise NotFound
+        serializer = self.get_serializer(request.current_profile)
+        return Response(serializer.data)
