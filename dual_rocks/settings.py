@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'easy_thumbnails',
     'channels',
     'rest_framework',
+    'django_filters',
     'dual_rocks.authentication',
     'dual_rocks.web',
     'dual_rocks.user_profile',

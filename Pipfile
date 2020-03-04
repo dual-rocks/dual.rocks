@@ -16,6 +16,7 @@ easy-thumbnails = "*"
 channels = "*"
 channels-redis = "*"
 djangorestframework = "*"
+django-filter = "*"
 
 [requires]
 python_version = "3.8"
