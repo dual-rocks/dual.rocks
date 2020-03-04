@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import { mapActions } from 'vuex';
 import axios from 'axios';
 
 export default Vue.component('select-profile', {
@@ -58,23 +59,31 @@ export default Vue.component('select-profile', {
       axios
         .get('/api/my-profiles/')
         .then((response) => {
-          this.loading = false;
           this.profiles = response.data;
         })
         .catch((error) => {
-          switch (error.response.status) {
-            case 403:
-              this.loading = false;
-              this.forbidden = true;
-              break;
+          if (error.response) {
+            switch (error.response.status) {
+              case 403:
+                this.forbidden = true;
+                break;
 
-            default:
-              console.error(`Unexpected status code: ${error.response.status}`);
+              default:
+                console.error(`Unexpected status code: ${error.response.status}`);
+            }
+          } else {
+            this.setCriticalError(error);
           }
+        })
+        .finally(() => {
+          this.loading = false;
         });
     },
     getSetAsCurrentProfileUrl(profile) {
       return `/${profile.at}/set-as-current-profile`;
-    }
+    },
+    ...mapActions([
+      'setCriticalError'
+    ])
   }
 });
