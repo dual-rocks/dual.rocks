@@ -9,7 +9,10 @@ const pt_BR = {
   login: 'Entrar na sua conta',
   register: 'Criar conta',
   not_has_profile: 'Você não tem nenhum perfil!',
-  create_profile: 'Criar perfil'
+  create_profile: 'Criar perfil',
+  messages_not_loaded: 'Mensagens não carregadas.',
+  reload: 'Recarregar',
+  network_error: 'Erro na conexão!'
 };
 
 Vue.locales({
