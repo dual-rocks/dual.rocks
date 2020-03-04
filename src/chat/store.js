@@ -14,7 +14,8 @@ export default new Vuex.Store({
     ws: null,
     wsConnected: false,
     roomGroupName: null,
-    channelName: null
+    channelName: null,
+    messages: []
   },
   getters: {
     open: state => state.open,
@@ -24,7 +25,8 @@ export default new Vuex.Store({
     profile: state => state.profile,
     wsConnected: state => state.wsConnected,
     roomGroupName: state => state.roomGroupName,
-    channelName: state => state.channelName
+    channelName: state => state.channelName,
+    messages: state => state.messages
   },
   mutations: {
     toggleInfoOpen(state) {
@@ -45,6 +47,7 @@ export default new Vuex.Store({
       state.ws = null;
       state.roomGroupName = null;
       state.channelName = null;
+      state.messages = [];
     },
     setCriticalError(state, reason) {
       state.criticalError = reason;
@@ -61,6 +64,9 @@ export default new Vuex.Store({
     setRoomGroupNameAndChannelName(state, {roomGroupName, channelName}) {
       state.roomGroupName = roomGroupName;
       state.channelName = channelName;
+    },
+    setMessages(state, messages) {
+      state.messages = messages;
     }
   },
   actions: {
@@ -80,7 +86,11 @@ export default new Vuex.Store({
       return context.dispatch('clear')
         .then(() => context.dispatch('loadProfile'))
         .then(() => context.dispatch('connectWs'))
+        .then(() => context.dispatch('loadMessages'))
         .catch(reason => context.dispatch('setCriticalError', reason));
+    },
+    reload(context) {
+      return context.dispatch('init');
     },
     setCriticalError(context, reason) {
       return context.dispatch('clear')
@@ -146,6 +156,13 @@ export default new Vuex.Store({
           }
         };
       });
+    },
+    loadMessages(context) {
+      return axios
+        .get('/api/my-messages/?limit_messages_per_profile=3')
+        .then(response => response.data)
+        .then(messages => context.commit('setMessages', messages))
+        .catch(() => Promise.reject('MESSAGES_NOT_LOADED'));
     }
   }
 });
