@@ -68,6 +68,9 @@ export default new Vuex.Store({
     },
     setMessages(state, messages) {
       state.messages = messages;
+    },
+    addNewMessage(state, message) {
+      state.messages.unshift(message);
     }
   },
   actions: {
@@ -150,6 +153,11 @@ export default new Vuex.Store({
                   channelName
                 }
               );
+              break;
+
+            case 'message':
+              const message = data.payload.message
+              context.commit('addNewMessage', message);
               break;
 
             default:
