@@ -43,6 +43,7 @@ export default new Vuex.Store({
       state.open = state.fullScreen;
     },
     clear(state) {
+      state.criticalError = null;
       state.profile = null;
       state.ws = null;
       state.roomGroupName = null;
