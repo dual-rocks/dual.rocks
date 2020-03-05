@@ -1,4 +1,3 @@
-import uuid
 from channels.generic.websocket import AsyncJsonWebsocketConsumer
 from dual_rocks.user_profile.middleware import CurrentProfileMiddleware
 from dual_rocks.user_profile.models import Profile
